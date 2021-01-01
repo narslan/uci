@@ -16,7 +16,7 @@ package main
 import (
 	"fmt"
 	"log"
-	"gopkg.in/freeeve/uci.v1"
+	"github.com/narslan/uci"
 )
 
 func main() {
@@ -24,14 +24,13 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	
+		options := map[string]interface{}{
+		"MultiPV": 4,
+		"Threads": 2,
+	}
+
 	// set some engine options
-	eng.SetOptions(uci.Options{
-		Hash:128,
-		Ponder:false,
-		OwnBook:true,
-		MultiPV:4,
-	})
+	eng.SetOptions(options)
 
 	// set the starting position
 	eng.SetFEN("rnb4r/ppp1k1pp/3bp3/1N3p2/1P2n3/P3BN2/2P1PPPP/R3KB1R b KQ - 4 11")
